@@ -1,0 +1,96 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #F5F5F5;
+    background-color: #212121;
+}
+
+code {
+    display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+}
+
+table,
+.highlight,
+.admonition {
+    padding: 5px;
+    border: 2px solid #383838;
+    border-radius: 5px;
+    background-color: #303030;
+}
+
+table {
+    width: 100%;
+}
+
+a:any-link {
+    color: #90A4AE;
+}
+
+a[href*="://"]::after {
+    content: '';
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    margin-left: 0.3em;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22white%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M0%20.5A.5.5%200%200%201%20.5%200h5a.5.5%200%200%201%200%201H1.707l8.147%208.146a.5.5%200%200%201-.708.708L1%201.707V5.5a.5.5%200%200%201-1%200v-5z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6em;
+    margin-bottom: 1em;
+    background-color: rgba(255, 213, 79, 0.5);
+}
+
+main {
+    margin-top: 0.1em;
+    margin-bottom: 0.5em;
+    padding: 0 10px;
+}
+
+.admonition {
+    width: calc(100% - 1em);
+    margin: 0.5em 0;
+}
+
+.admonition-title {
+    font-size: large;
+}
+
+.admonition > * {
+    margin: 0.2em;
+}
+
+.admonition.danger {
+    border-color: #b8645d;
+    background-color: #c03e3e;
+}
+
+
+.admonition.warning {
+    border-color: #be875e;
+    background-color: #c07b3e;
+}
+
+
+.admonition.note {
+    border-color: #715db8;
+    background-color: #5a3ec0;
+}
+
+@media (min-width: 768px) {
+    table {
+        width: 50%;
+        max-width: 500px;
+    }
+
+    main {
+        padding: 0 15%;
+    }
+}

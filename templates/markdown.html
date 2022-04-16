@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="md2web @ Arisu Wonderland  2022">
+        <title>{{ title }} - md2web</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/pygments.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <header><h1>{{ title }}</h1></header>
+        <main>{{ markdown|d(error)|safe }}</main>
+    </body>
+</html>

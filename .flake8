@@ -1,0 +1,5 @@
+[flake8]
+; What we decided to ignore:
+; WPS - wemake-python-styleguide adds their own plugin, that is too strict
+; S201 - debug=True is set for Flask
+ignore = WPS,S201

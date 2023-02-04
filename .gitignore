@@ -1,5 +1,16 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
+# Modules' leftovers
+.pytest_cache/
+.venv/
+dist/
 venv/
+
+# Text editors, IDEs
+.vscode/
+
+# etc.
+*private*

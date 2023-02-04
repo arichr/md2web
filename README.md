@@ -1,18 +1,26 @@
-# md2web
-Flask server to render Markdown files.
-# Why?
-I need a small server to serve my Markdown files, but using frameworks is too complicated for this task.
-# Features
- * Light
- * Easy to use
- * Caches results (see [Flask-Caching docs](https://flask-caching.readthedocs.io/en/latest/index.html))
- * Built on top of [python-markdown](https://python-markdown.github.io)
-# Enabled extensions
-External:
+<p align="center">
+    <h1 align="center">Markdown to Web</h1>
+    <p align="center">
+        <a href="https://codeclimate.com/github/arichr/md2web/maintainability"><img src="https://api.codeclimate.com/v1/badges/f54cb532f29a1392899b/maintainability" alt="CodeClimate maintainability" /></a>
+        <br />
+        Flask server for rendering Markdown files.
+    </p>
+</p>
+
+**Features:**
+
+* Light
+* Easy to use
+* Caches results via [flask-caching](https://github.com/pallets-eco/flask-caching)
+* Uses [python-markdown](https://python-markdown.github.io) with some extensions (to make it more GitHub alike)
+
+## Enabled extensions
+
+**External:**
 
 * [Automatic header demoting](https://github.com/SaschaCowley/Markdown-Headdown)
 
-Internal:
+**Built-in:**
 
 * [Admonitions](https://python-markdown.github.io/extensions/admonition/)
 * [CodeHilite (Code highlighting)](https://python-markdown.github.io/extensions/code_hilite/)

@@ -47,24 +47,20 @@ def index():
 @app.route('/<path:path>')
 @cache.cached(timeout=600)
 def show_md(path: str):
-    """Show any requested Markdown file, that we can find.
+    """Render a requested Markdown file.
 
-    Parameters:
-        path: Relative path to a file
+    Args:
+        path (str): Relative path to a file
 
     Returns:
-        The contents of the file, styled by using Jinja2.
+        str: Rendered HTML
     """
     path_obj = content_dir / Path(path)
-    if path.endswith('.md') or path_obj.is_relative_to(content_dir):
+    if path.endswith('.md') and path_obj.is_relative_to(content_dir):
         if path_obj.exists():
             html = md.convert(path_obj.read_text('UTF-8'))
             title = md.Meta.get('title', [path_obj.name])[-1]
-            return render_template(
-                'markdown.html',
-                title=title,
-                markdown=html,
-            )
+            return render_template('markdown.html', title=title, markdown=html)
 
     return render_template(
         'markdown.html',
@@ -74,4 +70,4 @@ def show_md(path: str):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

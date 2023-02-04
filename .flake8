@@ -1,5 +1,32 @@
 [flake8]
-; What we decided to ignore:
-; WPS - wemake-python-styleguide adds their own plugin, that is too strict
-; S201 - debug=True is set for Flask
-ignore = WPS,S201
+show-source          = true
+docstring-convention = google
+# pylint is not so strict as flake8 (pycodestyle), so max-line-length here is higher.
+max-line-length      = 100
+exclude =
+    # Byte-compiled / optimized / DLL files
+    __pycache__/,
+    *.py[cod],
+    *$py.class,
+
+    # CVS
+    .git/,
+
+    # Modules' leftovers
+    .pytest_cache/,
+    .venv/,
+    venv/,
+    dist/,
+
+    # Text editors, IDEs
+    .vscode/
+
+ignore =
+    # WPS - Too strict
+    WPS,
+    # S404, S603 - Supress 'subprocess' warnings
+    S404, S603
+
+per-file-ignores =
+    # Use of asserts in tests is OK
+    *test*.py: S101

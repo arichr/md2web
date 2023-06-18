@@ -12,7 +12,17 @@
 * Light
 * Easy to use
 * Caches results via [flask-caching](https://github.com/pallets-eco/flask-caching)
-* Uses [python-markdown](https://python-markdown.github.io) with some extensions (to make it more GitHub alike)
+
+## Getting started
+
+```bash
+python server.py
+```
+
+| Environment variable | Type | Description |
+|----------------------|:----:|-------------|
+| `MD_ROOT`            | Path | Absolute or relative path to a root folder |
+| `MD_CACHE_TIMEOUT`   | Seconds (Positive integer) | Cache expiry timeout. "Disable" cache - `1`. |
 
 ## Enabled extensions
 

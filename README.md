@@ -7,6 +7,10 @@
     </p>
 </p>
 
+| Desktop | Mobile |
+|---------|--------|
+| ![Desktop image](readme_files/desktop.png) | ![Mobile image](readme_files/mobile.png) |
+
 **Features:**
 
 * Light

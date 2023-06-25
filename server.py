@@ -5,6 +5,7 @@ from pathlib import Path
 import markdown
 from flask import Flask, render_template
 from flask_caching import Cache
+from pymdownx.emoji import twemoji
 
 app = Flask(__name__)
 
@@ -16,22 +17,23 @@ cache_timeout = int(os.environ.get('MD_CACHE_TIMEOUT', 600))
 
 md = markdown.Markdown(
     extensions=(
-        'markdown.extensions.admonition',
-        'markdown.extensions.codehilite',
-        'markdown.extensions.def_list',
-        'markdown.extensions.fenced_code',
         'markdown.extensions.meta',
-        'markdown.extensions.nl2br',
-        'markdown.extensions.tables',
         'markdown.extensions.toc',
-        'markdown.extensions.sane_lists',
-        'mdx_headdown',
+        'pymdownx.extra',
+        'pymdownx.inlinehilite',
+        'pymdownx.superfences',
+        'pymdownx.magiclink',
+        'pymdownx.keys',
+        'pymdownx.emoji',
+        'pymdownx.tasklist',
+        'pymdownx.details',
+        'pymdownx.tabbed',
+        'pymdownx.highlight',
     ),
     extension_configs={
-        'markdown.extensions.codehilite': {
-            'linenums': False,
-            'css_class': 'highlight',
-        },
+        'pymdownx.emoji': {'emoji_index': twemoji},
+        'pymdownx.tabbed': {'alternate_style': True},
+        'pymdownx.highlight': {'anchor_linenums': True, 'pygments_lang_class': True},
     },
     output_format='html',
 )
@@ -51,18 +53,29 @@ def render_md(path: str):
     requested_path = (root_path / path).resolve()
 
     if requested_path.is_relative_to(root_path):
+        # An iterable of path parts to the parent
+        raw_path = requested_path.relative_to(root_path).parts[:-1]
+        title = requested_path.name
+
         if requested_path.is_dir():
             requested_path = requested_path / 'index.md'
 
         if requested_path.is_file():
+            md.reset()
             html = md.convert(requested_path.read_text('UTF-8'))
-            title = md.Meta.get('title', [requested_path.name])[-1]  # pylint: disable=no-member
-            return render_template('markdown.html', title=title, markdown=html)
+            if 'title' in md.Meta:  # pylint: disable=no-member
+                title = md.Meta['title'][0]  # pylint: disable=no-member
 
-    return (
-        render_template('markdown.html', title='404', error='Unable to find the requested file.'),
-        404,
-    )
+            return render_template(
+                'markdown.html',
+                raw_path=raw_path,
+                path=tuple(enumerate(raw_path)),
+                title=title,
+                toc=md.toc,  # pylint: disable=no-member
+                markdown=html,
+            )
+
+    return render_template('markdown.html', error='Unable to find the requested file.'), 404
 
 
 @app.route('/')
